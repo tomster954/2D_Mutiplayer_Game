@@ -5,8 +5,7 @@
 
 #ifndef STARTUP
 #define STARTUP
-//#define GLFW_INCLUDE_GLU
-#include "States\Messenger\MessengerSetup.h"
+#include "States\GameStates\MainMenu.h"
 
 struct GLFWwindow;
 
@@ -24,13 +23,11 @@ public:
 
 	void Run();
 private:
+	GLFWwindow* m_pWindow;
+	MainMenu m_menuState;
 
 	float m_currentTime = 0.0f;
 	float m_deltaTime = 0.0f;
 	float m_lastTime = 0.0f;
-	
-	GLFWwindow* m_pWindow;
-
-	MessengerSetupState m_messengerSetupState;
 };
 #endif

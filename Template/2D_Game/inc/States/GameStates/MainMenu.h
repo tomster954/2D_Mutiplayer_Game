@@ -6,17 +6,23 @@
 #ifndef MAIN_MENU
 #define MAIN_MENU
 
+struct GLFWwindow;
+
 class MainMenu
 {
 public:
 	MainMenu();
 	~MainMenu();
 
-	void Update();
+	void Initialise(GLFWwindow* a_pWindow);
+
+	void Update(float a_dt);
 	void Draw();
 
-private:
+	void TestDrawing();
 
+private:
+	GLFWwindow* m_pWin;
 };
 
 
