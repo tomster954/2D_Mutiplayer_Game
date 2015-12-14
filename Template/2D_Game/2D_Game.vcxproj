@@ -42,6 +42,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -89,14 +90,19 @@
     <ClCompile Include="dep\imgui\imgui_demo.cpp" />
     <ClCompile Include="dep\imgui\imgui_draw.cpp" />
     <ClCompile Include="dep\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="src\SpriteLoad\lodepng.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\SpriteLoad\SpriteBatchImidiate.cpp" />
     <ClCompile Include="src\States\GameStates\MainMenu.cpp" />
     <ClCompile Include="src\States\Messenger\ClientState.cpp" />
     <ClCompile Include="src\States\Messenger\MessengerSetup.cpp" />
     <ClCompile Include="src\States\Messenger\ServerState.cpp" />
+    <ClCompile Include="src\SpriteLoad\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="inc\SpriteLoad\lodepng.h" />
+    <ClInclude Include="inc\SpriteLoad\SpriteBatchImidiate.h" />
     <ClInclude Include="inc\States\GameStates\MainMenu.h" />
     <ClInclude Include="inc\States\Messenger\ClientMessageStruct.h" />
     <ClInclude Include="inc\gl_core_4_4.h" />
@@ -105,6 +111,12 @@
     <ClInclude Include="inc\States\Messenger\ClientState.h" />
     <ClInclude Include="inc\States\Messenger\MessengerSetup.h" />
     <ClInclude Include="inc\States\Messenger\ServerState.h" />
+    <ClInclude Include="inc\SpriteLoad\Texture.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\rabbit.png" />
+    <Image Include="Resources\Images\images.png" />
+    <Image Include="Resources\Images\rabbit.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

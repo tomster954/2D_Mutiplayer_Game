@@ -8,6 +8,7 @@
 #include "States\GameStates\MainMenu.h"
 
 struct GLFWwindow;
+class SpriteBatch_Imidiate;
 
 class Application
 {
@@ -25,7 +26,8 @@ public:
 private:
 	GLFWwindow* m_pWindow;
 	MainMenu m_menuState;
-
+	SpriteBatch_Imidiate* m_SBI;
+	
 	float m_currentTime = 0.0f;
 	float m_deltaTime = 0.0f;
 	float m_lastTime = 0.0f;

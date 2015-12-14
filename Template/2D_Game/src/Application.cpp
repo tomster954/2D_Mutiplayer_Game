@@ -1,5 +1,5 @@
 #include "Application.h"
-
+#include "SpriteLoad\SpriteBatchImidiate.h"
 #include <imgui.h>
 #include "imgui_impl_glfw.h"
 
@@ -16,8 +16,11 @@ m_currentTime(0.0f),
 m_deltaTime(0.0f),
 m_lastTime(0.0f)
 {
-	//Sets up GLFW
+	//Sets up GLFW and creates window
 	SetUpGLFW();
+
+	//SpriteBatch Imidiate
+	m_SBI = new SpriteBatch_Imidiate(m_pWindow);
 
 	//Initialise ImGui
 	ImGui_ImplGlfw_Init(m_pWindow, true);
@@ -32,6 +35,7 @@ m_lastTime(0.0f)
 Application::~Application()
 {
 	//Cleaning up 
+	delete m_SBI;
 	ImGui_ImplGlfw_Shutdown();
 	glfwDestroyWindow(m_pWindow);
 	glfwTerminate();
@@ -84,6 +88,8 @@ void Application::Run()
 		glfwGetFramebufferSize(m_pWindow, &width, &height);
 		glViewport(0, 0, width, height);
 		
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		Update();
 		Draw();
 
@@ -105,26 +111,9 @@ void Application::Update()
 
 void Application::Draw()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
-	#pragma region Imgui Start
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0);
-	#pragma endregion
-	#pragma region sbi Start
-		//Begin Sprite Batch Imidiate
-		//sbi->begin()
-	#pragma endregion
-
+	
+		//ImGui_ImplGlfw_NewFrame();
 		//draw the menu state
-		m_menuState.Draw();
-
-	#pragma region sbi End
-		//End Sprite Batch Imidiate
-		//sbi->End()
-	#pragma endregion
-	#pragma region Imgui End
-		ImGui::PopStyleVar();
-		ImGui::Render();
-	#pragma endregion
+		m_menuState.Draw(m_SBI);
 }

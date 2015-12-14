@@ -7,6 +7,8 @@
 #define MAIN_MENU
 
 struct GLFWwindow;
+class Texture;
+class SpriteBatch_Imidiate;
 
 class MainMenu
 {
@@ -17,12 +19,13 @@ public:
 	void Initialise(GLFWwindow* a_pWindow);
 
 	void Update(float a_dt);
-	void Draw();
+	void Draw(SpriteBatch_Imidiate *a_SBI);
 
 	void TestDrawing();
 
 private:
 	GLFWwindow* m_pWin;
+	Texture* m_texture1;
 };
 
 
