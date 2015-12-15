@@ -55,13 +55,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.\inc;.\src;.\inc\States;.\src\States;.\dep\RakNet\inc;.\dep\glfw-3.1.2\include\GLFW;.\dep\glfw-3.1.2\src;.\dep\ImGUI;.\dep\SFML-2.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\inc;.\src;.\inc\States;.\src\States;.\dep\RakNet\inc;.\dep\glfw-3.1.2\include\GLFW;.\dep\glfw-3.1.2\src;.\dep\ImGUI;.\dep\SFML-2.3.2\include;.\dep\MathLib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>.\dep\RakNet\lib;.\dep\glfw-3.1.2\lib-vc2013;.\dep\SFML-2.3.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ws2_32.lib;RakNet_d.lib;opengl32.lib;glu32.lib;glfw3.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\dep\RakNet\lib;.\dep\glfw-3.1.2\lib-vc2013;.\dep\MathLib\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;RakNet_d.lib;opengl32.lib;glu32.lib;glfw3.lib;MathLib_ds.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -74,15 +74,15 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.\inc;.\src;.\inc\States;.\src\States;.\dep\RakNet\inc;.\dep\glfw-3.1.2\include\GLFW;.\dep\glfw-3.1.2\src;.\dep\ImGUI;.\dep\SFML-2.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\inc;.\src;.\inc\States;.\src\States;.\dep\RakNet\inc;.\dep\glfw-3.1.2\include\GLFW;.\dep\glfw-3.1.2\src;.\dep\ImGUI;.\dep\SFML-2.3.2\include;.\dep\MathLib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>.\dep\RakNet\lib;.\deplfw-3.1.2\lib-vc2013;.\dep\SFML-2.3.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ws2_32.lib;RakNet.lib;opengl32.lib;glu32.lib;glfw3.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\dep\RakNet\lib;.\dep\glfw-3.1.2\lib-vc2013;.\dep\MathLib\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;RakNet.lib;opengl32.lib;glu32.lib;glfw3.lib;MathLib_ds.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
