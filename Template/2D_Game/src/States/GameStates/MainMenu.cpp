@@ -28,10 +28,14 @@ void MainMenu::Update(float a_dt)
 
 void MainMenu::Draw(SpriteBatch_Imidiate* a_SBI)
 {
+	Vec2 playerPos = Vec2(100, 100);
+	Vec2 playerSize = Vec2(50, 100);
+
 	a_SBI->Begin();
 
 	a_SBI->SetColor(255, 255, 255, 255);
-	a_SBI->DrawSprite(m_texture1, 100, 100, 100, 100);
+	a_SBI->DrawSprite(m_texture1, playerPos, playerSize);
+
 	//TestDrawing();
 	a_SBI->End();
 }

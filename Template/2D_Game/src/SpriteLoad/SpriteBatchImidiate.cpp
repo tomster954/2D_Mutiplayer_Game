@@ -1,5 +1,7 @@
 #include "SpriteLoad\SpriteBatchImidiate.h"
 #include "SpriteLoad\Texture.h"
+#include "Matrix3.h"
+#include "Vec2.h"
 
 #include "glfw3.h"
 
@@ -50,18 +52,102 @@ void SpriteBatch_Imidiate::End()
 	// we would need to finish rendering stuff here...
 }
 
-void SpriteBatch_Imidiate::DrawSprite(Texture *texture, float xPos, float yPos, float width, float height)
+void SpriteBatch_Imidiate::DrawLine(float a_pos1X, float a_pos1Y, float a_pos2X, float a_pos2Y)
 {
+	//float x1 = Pos1.x;
+	//float x2 = Pos2.x;
+	//float y1 = Pos1.y;
+	//float y2 = Pos2.y;
+
+	glDisable(GL_TEXTURE_2D);
+	glColor4f(m_red / 255.0f, m_green / 255.0f, m_blue / 255.0f, m_alpha / 255.0f);
+	glBegin(GL_LINES);
+
+	glVertex2f(a_pos1X, a_pos1Y);
+	glVertex2f(a_pos2X, a_pos2Y);
+
+	glEnd();
+	glEnable(GL_TEXTURE_2D);
+
+}
+
+void SpriteBatch_Imidiate::SetColor(float r, float g, float b, float a)
+{
+	m_red = r;
+	m_green = g;
+	m_blue = b;
+	m_alpha = a;
+}
+
+void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, const Mat3 a_transform, const Vec2 a_size)
+{
+	float halfWidth = a_size.x	* 0.5f;
+	float halfHeight = a_size.y	* 0.5f;
+
+	Vec2 tl(-halfWidth, halfHeight);
+	Vec2 tr(halfWidth, halfHeight);
+	Vec2 br(halfWidth, -halfHeight);
+	Vec2 bl(-halfWidth, -halfHeight);
+
+	/* = (Vec2(0, 0) - Vec2(0.5f, 0.5f)) * size;
+	= (Vec2(1, 0) - Vec2(0.5f, 0.5f)) * size;
+	= (Vec2(1, 1) - Vec2(0.5f, 0.5f)) * size;
+	= (Vec2(0, 1) - Vec2(0.5f, 0.5f)) * size;*/
+
+	tl = tl * a_transform;
+	tr = tr * a_transform;
+	br = br * a_transform;
+	bl = bl * a_transform;
+
+	if (a_texture != NULL)
+	{
+		glBindTexture(GL_TEXTURE_2D, a_texture->GetTextureHandle());
+		glColor4f(m_red, m_green, m_blue, m_alpha);
+
+		glBegin(GL_QUADS);
+
+		glTexCoord2f(0.0f, 1.0f);	glVertex2f(tl.x, tl.y);
+		glTexCoord2f(1.0f, 1.0f);	glVertex2f(tr.x, tr.y);
+		glTexCoord2f(1.0f, 0.0f);	glVertex2f(br.x, br.y);
+		glTexCoord2f(0.0f, 0.0f);	glVertex2f(bl.x, bl.y);
+
+		glEnd();
+	}
+	else
+	{
+		glDisable(GL_TEXTURE_2D);
+		glColor4f(m_red, m_green, m_blue, m_alpha);
+
+		glBegin(GL_QUADS);
+
+		glVertex2f(tl.x, tl.y);
+		glVertex2f(tr.x, tr.y);
+		glVertex2f(br.x, br.y);
+		glVertex2f(bl.x, bl.y);
+
+		glEnd();
+		glEnable(GL_TEXTURE_2D);
+	}
+}
+
+void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, Vec2 a_pos, Vec2 a_size)
+{
+	float xPos = a_pos.x;
+	float yPos = a_pos.y;
+
+	float width = a_size.x;
+	float height = a_size.y;
+
 	//If a width and height wasnt specified
-	if (width == NULL)
-		float width = texture->GetWidth(); 
-	if (height == NULL)
-		float height = texture->GetHeight();
+	if (xPos == NULL)
+		xPos = a_texture->GetWidth();
+	if (yPos == NULL)
+		xPos = a_texture->GetHeight();
 
 	//If the texture is valid
-	if (texture != NULL)
+	if (a_texture != NULL)
 	{
-		glBindTexture(GL_TEXTURE_2D, texture->GetTextureHandle());
+		glBindTexture(GL_TEXTURE_2D, a_texture->GetTextureHandle());
 		glColor4f(m_red, m_green, m_blue, m_alpha);
 
 		glBegin(GL_QUADS);
@@ -90,80 +176,3 @@ void SpriteBatch_Imidiate::DrawSprite(Texture *texture, float xPos, float yPos, 
 	}
 }
 
-void SpriteBatch_Imidiate::DrawLine(float a_pos1X, float a_pos1Y, float a_pos2X, float a_pos2Y)
-{
-	//float x1 = Pos1.x;
-	//float x2 = Pos2.x;
-	//float y1 = Pos1.y;
-	//float y2 = Pos2.y;
-
-	glDisable(GL_TEXTURE_2D);
-	glColor4f(m_red / 255.0f, m_green / 255.0f, m_blue / 255.0f, m_alpha / 255.0f);
-	glBegin(GL_LINES);
-
-	glVertex2f(a_pos1X, a_pos1Y);
-	glVertex2f(a_pos2X, a_pos2Y);
-
-	glEnd();
-	glEnable(GL_TEXTURE_2D);
-
-}
-
-void SpriteBatch_Imidiate::SetColor(float r, float g, float b, float a)
-{
-	m_red = r;
-	m_green = g;
-	m_blue = b;
-	m_alpha = a;
-}
-
-//void SpriteBatch_Imidiate::DrawSprite(Texture *texture, const Mat3 &transform, const Vec2 &size)
-//{
-//	float halfWidth = size.x	* 0.5f;
-//	float halfHeight = size.y	* 0.5f;
-//
-//	Vec2 tl(-halfWidth, halfHeight);
-//	Vec2 tr(halfWidth, halfHeight);
-//	Vec2 br(halfWidth, -halfHeight);
-//	Vec2 bl(-halfWidth, -halfHeight);
-//
-//	/* = (Vec2(0, 0) - Vec2(0.5f, 0.5f)) * size;
-//	= (Vec2(1, 0) - Vec2(0.5f, 0.5f)) * size;
-//	= (Vec2(1, 1) - Vec2(0.5f, 0.5f)) * size;
-//	= (Vec2(0, 1) - Vec2(0.5f, 0.5f)) * size;*/
-//
-//	tl = tl * transform;
-//	tr = tr * transform;
-//	br = br * transform;
-//	bl = bl * transform;
-//
-//	if (texture != NULL)
-//	{
-//		glBindTexture(GL_TEXTURE_2D, texture->GetTextureHandle());
-//		glColor4f(m_red, m_green, m_blue, m_alpha);
-//
-//		glBegin(GL_QUADS);
-//
-//		glTexCoord2f(0.0f, 1.0f);	glVertex2f(tl.x, tl.y);
-//		glTexCoord2f(1.0f, 1.0f);	glVertex2f(tr.x, tr.y);
-//		glTexCoord2f(1.0f, 0.0f);	glVertex2f(br.x, br.y);
-//		glTexCoord2f(0.0f, 0.0f);	glVertex2f(bl.x, bl.y);
-//
-//		glEnd();
-//	}
-//	else
-//	{
-//		glDisable(GL_TEXTURE_2D);
-//		glColor4f(m_red, m_green, m_blue, m_alpha);
-//
-//		glBegin(GL_QUADS);
-//
-//		glVertex2f(tl.x, tl.y);
-//		glVertex2f(tr.x, tr.y);
-//		glVertex2f(br.x, br.y);
-//		glVertex2f(bl.x, bl.y);
-//
-//		glEnd();
-//		glEnable(GL_TEXTURE_2D);
-//	}
-//}
