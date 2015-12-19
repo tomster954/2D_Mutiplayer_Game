@@ -84,16 +84,13 @@ void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, const Mat3 a_transform
 	float halfWidth = a_size.x	* 0.5f;
 	float halfHeight = a_size.y	* 0.5f;
 
+	//Corners of the quad based of the image size
 	Vec2 tl(-halfWidth, halfHeight);
 	Vec2 tr(halfWidth, halfHeight);
 	Vec2 br(halfWidth, -halfHeight);
 	Vec2 bl(-halfWidth, -halfHeight);
 
-	/* = (Vec2(0, 0) - Vec2(0.5f, 0.5f)) * size;
-	= (Vec2(1, 0) - Vec2(0.5f, 0.5f)) * size;
-	= (Vec2(1, 1) - Vec2(0.5f, 0.5f)) * size;
-	= (Vec2(0, 1) - Vec2(0.5f, 0.5f)) * size;*/
-
+	// timesing the points by the position
 	tl = tl * a_transform;
 	tr = tr * a_transform;
 	br = br * a_transform;

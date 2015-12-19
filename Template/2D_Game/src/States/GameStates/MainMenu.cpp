@@ -1,7 +1,7 @@
 #include "GameStates\MainMenu.h"
 #include "SpriteLoad\Texture.h"
 #include "SpriteLoad\SpriteBatchImidiate.h"
-
+#include "imgui.h"
 #include <glfw3.h>
 #include "stdlib.h"
 
@@ -18,7 +18,6 @@ MainMenu::~MainMenu()
 void MainMenu::Initialise(GLFWwindow* a_pWindow)
 {
 	m_pWin = a_pWindow;
-	m_texture1 = new Texture("./Images/images.png");
 }
 
 void MainMenu::Update(float a_dt)
@@ -28,20 +27,31 @@ void MainMenu::Update(float a_dt)
 
 void MainMenu::Draw(SpriteBatch_Imidiate* a_SBI)
 {
-	Vec2 playerPos = Vec2(100, 100);
-	Vec2 playerSize = Vec2(50, 100);
+	glfwGetWindowSize(m_pWin, &m_windowWidth, &m_windowHeight);
 
-	a_SBI->Begin();
+	//Setting up next window
+	ImGui::SetNextWindowSize(ImVec2((float)m_windowWidth, (float)m_windowHeight), ImGuiSetCond_Always);
+	ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiSetCond_Once);
+	
+	//BEGIN
+	if (ImGui::Begin("Messenger", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar))
+	{
+		//TODO:: Add play button
+		if(ImGui::Button("PLAY", ImVec2(100, 100)))
+		{
+			//Set the current Updating state to Play State;
+		}
 
-	a_SBI->SetColor(255, 255, 255, 255);
-	a_SBI->DrawSprite(m_texture1, playerPos, playerSize);
+	}
+	ImGui::End();
+	//END
 
-	//TestDrawing();
-	a_SBI->End();
 }
 
 void MainMenu::TestDrawing()
 {
+	//Draws a 3D cube
+
 	float ratio;
 	int width, height;
 	glfwGetFramebufferSize(m_pWin, &width, &height);

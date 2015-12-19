@@ -26,6 +26,9 @@ public:
 private:
 	GLFWwindow* m_pWin;
 	Texture* m_texture1;
+
+	int m_windowWidth;
+	int m_windowHeight;
 };
 
 

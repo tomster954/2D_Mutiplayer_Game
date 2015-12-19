@@ -93,6 +93,7 @@ void Application::Run()
 		Update();
 		Draw();
 
+		
 		glfwSwapBuffers(m_pWindow);
 		glfwPollEvents();
 	}
@@ -111,9 +112,14 @@ void Application::Update()
 
 void Application::Draw()
 {
-	
-	
-		//ImGui_ImplGlfw_NewFrame();
+		//Begin
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
+
 		//draw the menu state
 		m_menuState.Draw(m_SBI);
+
+		//End
+		ImGui::PopStyleVar();
+		ImGui::Render();		
 }

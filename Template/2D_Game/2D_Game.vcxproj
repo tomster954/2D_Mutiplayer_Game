@@ -95,6 +95,7 @@
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\SpriteLoad\SpriteBatchImidiate.cpp" />
     <ClCompile Include="src\States\GameStates\MainMenu.cpp" />
+    <ClCompile Include="src\States\GameStates\PlayState.cpp" />
     <ClCompile Include="src\States\Messenger\ClientState.cpp" />
     <ClCompile Include="src\States\Messenger\MessengerSetup.cpp" />
     <ClCompile Include="src\States\Messenger\ServerState.cpp" />
@@ -107,6 +108,7 @@
     <ClInclude Include="inc\SpriteLoad\lodepng.h" />
     <ClInclude Include="inc\SpriteLoad\SpriteBatchImidiate.h" />
     <ClInclude Include="inc\States\GameStates\MainMenu.h" />
+    <ClInclude Include="inc\States\GameStates\PlayState.h" />
     <ClInclude Include="inc\States\Messenger\ClientMessageStruct.h" />
     <ClInclude Include="inc\gl_core_4_4.h" />
     <ClInclude Include="inc\Application.h" />
