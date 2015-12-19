@@ -5,25 +5,24 @@
 
 #ifndef PLAY_STATE
 #define PLAY_STATE
+#include "Managers\GameStateManager.h"
 
 class GLFWwindow;
 class Texture;
 class SpriteBatch_Imidiate;
 
-class PlayState
+class PlayState : public IGameState
 {
 public:
-	PlayState();
-	~PlayState();
-	void Initialise(GLFWwindow *a_pWindow);
+	PlayState(Application *a_application);
+	virtual ~PlayState();
 
-	void Update(float a_dt);
+	virtual void Update(float a_dt);
 
-	void Draw(SpriteBatch_Imidiate *a_SBI);
+	virtual void Draw(SpriteBatch_Imidiate *a_SBI);
 
 private:
 	Texture *m_testBoxText;
-	GLFWwindow *m_pWindow;
 };
 
 #endif

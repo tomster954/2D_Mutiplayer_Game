@@ -1,23 +1,20 @@
 #include "GameStates\MainMenu.h"
+#include "Application.h"
 #include "SpriteLoad\Texture.h"
 #include "SpriteLoad\SpriteBatchImidiate.h"
+
 #include "imgui.h"
 #include <glfw3.h>
 #include "stdlib.h"
 
-MainMenu::MainMenu()
+MainMenu::MainMenu(Application *a_appication) : IGameState(a_appication)
 {
-	
+
 }
 
 MainMenu::~MainMenu()
 {
 	delete m_texture1;
-}
-
-void MainMenu::Initialise(GLFWwindow* a_pWindow)
-{
-	m_pWin = a_pWindow;
 }
 
 void MainMenu::Update(float a_dt)
@@ -27,18 +24,20 @@ void MainMenu::Update(float a_dt)
 
 void MainMenu::Draw(SpriteBatch_Imidiate* a_SBI)
 {
-	glfwGetWindowSize(m_pWin, &m_windowWidth, &m_windowHeight);
+	glfwGetWindowSize(m_pApplication->m_pWindow, &m_windowWidth, &m_windowHeight);
 
 	//Setting up next window
 	ImGui::SetNextWindowSize(ImVec2((float)m_windowWidth, (float)m_windowHeight), ImGuiSetCond_Always);
 	ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiSetCond_Once);
 	
 	//BEGIN
-	if (ImGui::Begin("Messenger", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar))
+	if (ImGui::Begin("Messenger", NULL))
 	{
 		//TODO:: Add play button
 		if(ImGui::Button("PLAY", ImVec2(100, 100)))
 		{
+			m_pApplication->m_pGameStateManager->PopState();
+			m_pApplication->m_pGameStateManager->PushState("PlayState");
 			//Set the current Updating state to Play State;
 		}
 
@@ -54,7 +53,7 @@ void MainMenu::TestDrawing()
 
 	float ratio;
 	int width, height;
-	glfwGetFramebufferSize(m_pWin, &width, &height);
+	glfwGetFramebufferSize(m_pApplication->m_pWindow, &width, &height);
 	ratio = width / (float)height;
 
 	glMatrixMode(GL_PROJECTION);

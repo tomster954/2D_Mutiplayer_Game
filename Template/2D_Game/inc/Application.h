@@ -5,10 +5,10 @@
 
 #ifndef STARTUP
 #define STARTUP
-#include "States\GameStates\MainMenu.h"
 
 struct GLFWwindow;
 class SpriteBatch_Imidiate;
+class GameStateManager;
 
 class Application
 {
@@ -23,11 +23,13 @@ public:
 	void Draw();
 
 	void Run();
-private:
+
 	GLFWwindow* m_pWindow;
-	MainMenu m_menuState;
+	GameStateManager *m_pGameStateManager;
+
+private:
 	SpriteBatch_Imidiate* m_SBI;
-	
+
 	float m_currentTime = 0.0f;
 	float m_deltaTime = 0.0f;
 	float m_lastTime = 0.0f;

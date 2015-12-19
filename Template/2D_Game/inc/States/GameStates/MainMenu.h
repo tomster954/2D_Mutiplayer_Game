@@ -5,26 +5,24 @@
 
 #ifndef MAIN_MENU
 #define MAIN_MENU
+#include "Managers\GameStateManager.h"
 
 struct GLFWwindow;
 class Texture;
 class SpriteBatch_Imidiate;
 
-class MainMenu
+class MainMenu : public IGameState
 {
 public:
-	MainMenu();
-	~MainMenu();
+	MainMenu(Application *a_appication);
+	virtual ~MainMenu();
 
-	void Initialise(GLFWwindow* a_pWindow);
-
-	void Update(float a_dt);
-	void Draw(SpriteBatch_Imidiate *a_SBI);
+	virtual void Update(float a_dt);
+	virtual void Draw(SpriteBatch_Imidiate *a_SBI);
 
 	void TestDrawing();
 
 private:
-	GLFWwindow* m_pWin;
 	Texture* m_texture1;
 
 	int m_windowWidth;

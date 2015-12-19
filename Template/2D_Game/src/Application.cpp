@@ -2,6 +2,10 @@
 #include "SpriteLoad\SpriteBatchImidiate.h"
 #include <imgui.h>
 #include "imgui_impl_glfw.h"
+#include "Managers\GameStateManager.h"
+
+#include "States\GameStates\MainMenu.h"
+#include "States\GameStates\PlayState.h"
 
 #include <glfw3.h>
 #include <iostream>
@@ -25,9 +29,14 @@ m_lastTime(0.0f)
 	//Initialise ImGui
 	ImGui_ImplGlfw_Init(m_pWindow, true);
 
-	//Init the menu state
-	m_menuState.Initialise(m_pWindow);
+	//Initialise the game state manager
+	m_pGameStateManager = new GameStateManager();
 
+	//Initialise the game states
+	m_pGameStateManager->SetState("MenuState", new MainMenu(this));
+	m_pGameStateManager->SetState("PlayState", new PlayState(this));
+
+	m_pGameStateManager->PushState("MenuState");
 	//Main run loop
 	Run();
 }
@@ -88,7 +97,9 @@ void Application::Run()
 		glfwGetFramebufferSize(m_pWindow, &width, &height);
 		glViewport(0, 0, width, height);
 		
+		glClearColor(255, 255, 255, 255);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		
 
 		Update();
 		Draw();
@@ -106,20 +117,21 @@ void Application::Update()
 	m_deltaTime = m_currentTime - m_lastTime;
 	m_lastTime = m_currentTime;
 
-	//Update the menu state
-	m_menuState.Update(m_deltaTime);
+	m_pGameStateManager->UpdateGameStates(m_deltaTime);
 }
 
 void Application::Draw()
 {
-		//Begin
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
-
-		//draw the menu state
-		m_menuState.Draw(m_SBI);
-
-		//End
-		ImGui::PopStyleVar();
-		ImGui::Render();		
+	//Begin
+	m_SBI->Begin();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
+	
+	//draw the menu state
+	m_pGameStateManager->DrawGameStates(m_SBI);
+	
+	//End
+	m_SBI->End();
+	ImGui::PopStyleVar();
+	ImGui::Render();		
 }
