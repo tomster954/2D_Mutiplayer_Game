@@ -15,7 +15,7 @@
 class Texture
 {
 public:
-
+	Texture();
 	Texture(const char *filename);
 	~Texture();
 

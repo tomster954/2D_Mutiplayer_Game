@@ -3,11 +3,18 @@
 #include "SpriteLoad\lodepng.h"
 #include "glfw3.h"
 #include <vector>
+Texture::Texture()
+{
+
+}
 
 Texture::Texture(const char *filename)
 {
 	m_repeat = false;
 	m_glTextureHandle = LoadTexture(filename, &m_width, &m_height);
+	
+	m_OriginalWidth = m_width;
+	m_OriginalHeight = m_height;
 }
 
 Texture::~Texture()

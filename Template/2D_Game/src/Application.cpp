@@ -6,7 +6,9 @@
 
 #include "States\GameStates\MenuState.h"
 #include "States\GameStates\PlayState.h"
+#include "States\GameStates\Instructions_State.h"
 
+#define GLFW_INCLUDE_GLU
 #include <glfw3.h>
 #include <iostream>
 
@@ -33,8 +35,10 @@ m_lastTime(0.0f)
 	m_pGameStateManager = new GameStateManager();
 
 	//Initialise the game states
-	m_pGameStateManager->SetState("MenuState", new MenuState(this));
-	m_pGameStateManager->SetState("PlayState", new PlayState(this));
+	m_pGameStateManager->SetState("MenuState",			new MenuState(this));
+	m_pGameStateManager->SetState("PlayState",			new PlayState(this));
+	m_pGameStateManager->SetState("InstructionsState",	new Instructions_State(this));
+	
 
 	m_pGameStateManager->PushState("MenuState");
 	//Main run loop
@@ -44,8 +48,11 @@ m_lastTime(0.0f)
 Application::~Application()
 {
 	//Cleaning up 
-	delete m_SBI;
+
+	delete m_pGameStateManager;
 	ImGui_ImplGlfw_Shutdown();
+	delete m_SBI;
+
 	glfwDestroyWindow(m_pWindow);
 	glfwTerminate();
 }
@@ -63,7 +70,7 @@ void Application::SetUpGLFW()
 	}
 
 	//Create a new window
-	m_pWindow = glfwCreateWindow(640, 480, "Window", NULL, NULL);
+	m_pWindow = glfwCreateWindow(1280, 800, "Game", NULL, NULL);
 
 	//If window initialisation failed
 	if (!m_pWindow)
@@ -88,18 +95,25 @@ void Application::SetUpGLFW()
 
 void Application::Run()
 {
+	
+
 	//Main run loop
 	while (!glfwWindowShouldClose(m_pWindow))
 	{
-		if (glfwGetKey(m_pWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)	glfwSetWindowShouldClose(m_pWindow, true);
-
-		int width, height;
-		glfwGetFramebufferSize(m_pWindow, &width, &height);
-		glViewport(0, 0, width, height);
-		
 		glClearColor(255, 255, 255, 255);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
+		float ratio;
+		int width, height;
+		glfwGetFramebufferSize(m_pWindow, &width, &height);
+		ratio = width / (float)height;
+		glViewport(0, 0, width, height);
+		glClear(GL_COLOR_BUFFER_BIT);
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(-ratio, ratio, -1.f, 1.f, 1.f, -1.f);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
 
 		Update();
 		Draw();

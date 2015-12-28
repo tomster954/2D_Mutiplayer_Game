@@ -2,12 +2,13 @@
 #include "Application.h"
 #include "SpriteLoad\Texture.h"
 #include "SpriteLoad\SpriteBatch_Immediate.h"
+#include "Managers\Button.h"
 
 #include "imgui.h"
 #include <glfw3.h>
 #include "stdlib.h"
 
-MenuState::MenuState(Application *a_appication) : IGameState(a_appication)
+MenuState::MenuState(Application *a_application) : IGameState(a_application)
 {
 
 }
@@ -31,20 +32,22 @@ void MenuState::Draw(SpriteBatch_Imidiate* a_SBI)
 	ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiSetCond_Once);
 	
 	//BEGIN
-	if (ImGui::Begin("Messenger", NULL))
+	if (ImGui::Begin("Main Menu", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove))
 	{
-		//TODO:: Add play button
-		if(ImGui::Button("PLAY", ImVec2(100, 100)))
+		if(ImGui::Button("Play", ImVec2(100, 100)))
 		{
+			//Set the current Updating state to Play State;
 			m_pApplication->m_pGameStateManager->PopState();
 			m_pApplication->m_pGameStateManager->PushState("PlayState");
-			//Set the current Updating state to Play State;
 		}
-
+		if (ImGui::Button("Instructions", ImVec2(100, 100)))
+		{
+			//Push the Instructions state
+			m_pApplication->m_pGameStateManager->PushState("InstructionsState");
+		}
 	}
 	ImGui::End();
 	//END
-
 }
 
 void MenuState::TestDrawing()

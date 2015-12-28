@@ -27,6 +27,7 @@ public:
 	GLFWwindow* m_pWindow;
 	GameStateManager *m_pGameStateManager;
 
+	
 private:
 	SpriteBatch_Imidiate* m_SBI;
 

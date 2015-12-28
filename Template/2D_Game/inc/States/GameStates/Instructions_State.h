@@ -1,34 +1,24 @@
 //-----------------------------------------------------------------------------
-//Author: Tom Solarino	
-//Description: Main Menu State
+//Author: Tom Solarino
+//Description: This is the instructions state that shows player controls ect.
 //-----------------------------------------------------------------------------
 
-#ifndef MENU_STATE
-#define MENU_STATE
+#ifndef INSTRUCTIONS_STATE
+#define INSTRUCTIONS_STATE
 #include "Managers\GameStateManager.h"
 
-struct GLFWwindow;
-class Texture;
-class SpriteBatch_Imidiate;
-
-class MenuState : public IGameState
+class Instructions_State : public IGameState
 {
 public:
-	MenuState(Application *a_application);
-	virtual ~MenuState();
+	Instructions_State(Application *a_application);
+	virtual ~Instructions_State();
 
 	virtual void Update(float a_dt);
 	virtual void Draw(SpriteBatch_Imidiate *a_SBI);
 
-	void TestDrawing();
-
 private:
-	Texture* m_texture1;
-
 	int m_windowWidth;
 	int m_windowHeight;
 };
-
-
 
 #endif
