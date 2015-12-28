@@ -1,4 +1,4 @@
-#include "SpriteLoad\SpriteBatchImidiate.h"
+#include "SpriteLoad\SpriteBatch_Immediate.h"
 #include "SpriteLoad\Texture.h"
 #include "Matrix3.h"
 #include "Vec2.h"
@@ -81,8 +81,19 @@ void SpriteBatch_Imidiate::SetColor(float r, float g, float b, float a)
 
 void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, const Mat3 a_transform, const Vec2 a_size)
 {
+	//repeats the texture however much
+	float repeatX = 1.0f;
+	float repeatY = 1.0f;
+
 	float halfWidth = a_size.x	* 0.5f;
 	float halfHeight = a_size.y	* 0.5f;
+
+	//will repeat the texture if required
+	if (a_texture->m_repeat)
+	{
+		repeatX = a_size.x / a_texture->GetSize().x;
+		repeatY = a_size.y / a_texture->GetSize().y;
+	}
 
 	//Corners of the quad based of the image size
 	Vec2 tl(-halfWidth, halfHeight);
@@ -90,7 +101,7 @@ void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, const Mat3 a_transform
 	Vec2 br(halfWidth, -halfHeight);
 	Vec2 bl(-halfWidth, -halfHeight);
 
-	// timesing the points by the position
+	//Move the corner to the right pos
 	tl = tl * a_transform;
 	tr = tr * a_transform;
 	br = br * a_transform;
@@ -103,10 +114,10 @@ void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, const Mat3 a_transform
 
 		glBegin(GL_QUADS);
 
-		glTexCoord2f(0.0f, 1.0f);	glVertex2f(tl.x, tl.y);
-		glTexCoord2f(1.0f, 1.0f);	glVertex2f(tr.x, tr.y);
-		glTexCoord2f(1.0f, 0.0f);	glVertex2f(br.x, br.y);
-		glTexCoord2f(0.0f, 0.0f);	glVertex2f(bl.x, bl.y);
+		glTexCoord2f(0.0f,		repeatY);	glVertex2f(tl.x, tl.y);
+		glTexCoord2f(repeatX,	repeatY);	glVertex2f(tr.x, tr.y);
+		glTexCoord2f(repeatX,	0.0f);		glVertex2f(br.x, br.y);
+		glTexCoord2f(0.0f,		0.0f);		glVertex2f(bl.x, bl.y);
 
 		glEnd();
 	}
@@ -137,9 +148,9 @@ void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, Vec2 a_pos, Vec2 a_siz
 
 	//If a width and height wasnt specified
 	if (xPos == NULL)
-		xPos = a_texture->GetWidth();
+		xPos = a_texture->GetSize().x;
 	if (yPos == NULL)
-		xPos = a_texture->GetHeight();
+		yPos = a_texture->GetSize().y;
 
 	//If the texture is valid
 	if (a_texture != NULL)

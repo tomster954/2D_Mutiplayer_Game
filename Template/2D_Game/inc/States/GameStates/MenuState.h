@@ -3,19 +3,19 @@
 //Description: Main Menu State
 //-----------------------------------------------------------------------------
 
-#ifndef MAIN_MENU
-#define MAIN_MENU
+#ifndef MENU_STATE
+#define MENU_STATE
 #include "Managers\GameStateManager.h"
 
 struct GLFWwindow;
 class Texture;
 class SpriteBatch_Imidiate;
 
-class MainMenu : public IGameState
+class MenuState : public IGameState
 {
 public:
-	MainMenu(Application *a_appication);
-	virtual ~MainMenu();
+	MenuState(Application *a_appication);
+	virtual ~MenuState();
 
 	virtual void Update(float a_dt);
 	virtual void Draw(SpriteBatch_Imidiate *a_SBI);

@@ -1,10 +1,10 @@
 #include "Application.h"
-#include "SpriteLoad\SpriteBatchImidiate.h"
+#include "SpriteLoad\SpriteBatch_Immediate.h"
 #include <imgui.h>
 #include "imgui_impl_glfw.h"
 #include "Managers\GameStateManager.h"
 
-#include "States\GameStates\MainMenu.h"
+#include "States\GameStates\MenuState.h"
 #include "States\GameStates\PlayState.h"
 
 #include <glfw3.h>
@@ -33,7 +33,7 @@ m_lastTime(0.0f)
 	m_pGameStateManager = new GameStateManager();
 
 	//Initialise the game states
-	m_pGameStateManager->SetState("MenuState", new MainMenu(this));
+	m_pGameStateManager->SetState("MenuState", new MenuState(this));
 	m_pGameStateManager->SetState("PlayState", new PlayState(this));
 
 	m_pGameStateManager->PushState("MenuState");

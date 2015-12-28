@@ -10,6 +10,7 @@
 
 #ifndef TEXTURE_H
 #define TEXTURE_H
+#include "Vec2.h"
 
 class Texture
 {
@@ -18,13 +19,25 @@ public:
 	Texture(const char *filename);
 	~Texture();
 
-	unsigned int GetWidth()				{ return m_width; }
-	unsigned int GetHeight()			{ return m_height; }
+	void SetSize(Vec2 a_size){ m_width = a_size.x; m_height = a_size.y; }
+	Vec2 GetSize(){ return Vec2(m_width, m_height); }
+	Vec2 GetOriginalSize(){ return Vec2(m_OriginalWidth, m_OriginalHeight); }
+
+
+	//unsigned int GetWidth()				{ return m_width; }
+	//unsigned int GetHeight()			{ return m_height; }
 	unsigned int GetTextureHandle()		{ return m_glTextureHandle; }
+
+	//if true, will repeat the texture over the quad its drawn on.
+	bool m_repeat;
 
 private:
 	unsigned int	m_width;
 	unsigned int	m_height;
+	
+	unsigned int	m_OriginalWidth;
+	unsigned int	m_OriginalHeight;
+
 	unsigned int	m_glTextureHandle;
 	bool			m_loaded;
 

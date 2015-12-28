@@ -1,28 +1,28 @@
-#include "GameStates\MainMenu.h"
+#include "GameStates\MenuState.h"
 #include "Application.h"
 #include "SpriteLoad\Texture.h"
-#include "SpriteLoad\SpriteBatchImidiate.h"
+#include "SpriteLoad\SpriteBatch_Immediate.h"
 
 #include "imgui.h"
 #include <glfw3.h>
 #include "stdlib.h"
 
-MainMenu::MainMenu(Application *a_appication) : IGameState(a_appication)
+MenuState::MenuState(Application *a_appication) : IGameState(a_appication)
 {
 
 }
 
-MainMenu::~MainMenu()
+MenuState::~MenuState()
 {
 	delete m_texture1;
 }
 
-void MainMenu::Update(float a_dt)
+void MenuState::Update(float a_dt)
 {
 
 }
 
-void MainMenu::Draw(SpriteBatch_Imidiate* a_SBI)
+void MenuState::Draw(SpriteBatch_Imidiate* a_SBI)
 {
 	glfwGetWindowSize(m_pApplication->m_pWindow, &m_windowWidth, &m_windowHeight);
 
@@ -47,7 +47,7 @@ void MainMenu::Draw(SpriteBatch_Imidiate* a_SBI)
 
 }
 
-void MainMenu::TestDrawing()
+void MenuState::TestDrawing()
 {
 	//Draws a 3D cube
 

@@ -1,5 +1,5 @@
 #include "Managers\GameStateManager.h"
-#include "SpriteLoad\SpriteBatchImidiate.h"
+#include "SpriteLoad\SpriteBatch_Immediate.h"
 #include "Application.h"
 
 #include "glfw3.h"

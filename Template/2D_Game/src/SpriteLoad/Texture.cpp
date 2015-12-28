@@ -6,6 +6,7 @@
 
 Texture::Texture(const char *filename)
 {
+	m_repeat = false;
 	m_glTextureHandle = LoadTexture(filename, &m_width, &m_height);
 }
 
