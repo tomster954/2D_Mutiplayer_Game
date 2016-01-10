@@ -63,16 +63,16 @@ void MenuState::LoadButtons()
 	m_tQuit->SetSize(Vec2(smallImageWidth, smallImageHeight));
 
 	//Initialising the main buttons
-	m_bSinglePlayer = new Button(Vec2(largeButtonPosX, largeButtonPosY * yPosOffset),				m_tSinglePlayer,	m_pApplication);
-	m_bJoinGame		= new Button(Vec2(largeButtonPosX, largeButtonPosY * (yPosOffset += 0.10f)),	m_tJoinGame,		m_pApplication);
-	m_bHostGame		= new Button(Vec2(largeButtonPosX, largeButtonPosY * (yPosOffset += 0.10f)),	m_tHostGame,		m_pApplication);
+	m_bSinglePlayer = new Button(Vec2(largeButtonPosX, largeButtonPosY * yPosOffset),				m_tSinglePlayer,	BtnFunction::SINGLE_PLAYER, m_pApplication);
+	m_bJoinGame		= new Button(Vec2(largeButtonPosX, largeButtonPosY * (yPosOffset += 0.10f)),	m_tJoinGame,		BtnFunction::JOIN_GAME,		m_pApplication);
+	m_bHostGame		= new Button(Vec2(largeButtonPosX, largeButtonPosY * (yPosOffset += 0.10f)),	m_tHostGame,		BtnFunction::HOST_GAME,		m_pApplication);
 	
 	//Initialising the smaller buttons
 	float buttonSpacing = (largeImageWidth - (4*smallImageWidth)) / 3;
-	m_bInstructions = new Button(Vec2(smallButtonPosX,										smallButtonPosY * (yPosOffset += 0.10f)),	m_tInstructions,	m_pApplication);
-	m_bSettings		= new Button(Vec2(smallButtonPosX += smallImageWidth + buttonSpacing,	smallButtonPosY * yPosOffset),				m_tSettings,		m_pApplication);
-	m_bHScores		= new Button(Vec2(smallButtonPosX += smallImageWidth + buttonSpacing,	smallButtonPosY * yPosOffset),				m_tHScores,			m_pApplication);
-	m_bQuit			= new Button(Vec2(smallButtonPosX += smallImageWidth + buttonSpacing,	smallButtonPosY * yPosOffset),				m_tQuit,			m_pApplication);
+	m_bInstructions = new Button(Vec2(smallButtonPosX,										smallButtonPosY * (yPosOffset += 0.10f)),	m_tInstructions,	BtnFunction::INSTUCTIONS	,m_pApplication);
+	m_bSettings		= new Button(Vec2(smallButtonPosX += smallImageWidth + buttonSpacing,	smallButtonPosY * yPosOffset),				m_tSettings,		BtnFunction::SETTINGS		,m_pApplication);
+	m_bHScores		= new Button(Vec2(smallButtonPosX += smallImageWidth + buttonSpacing,	smallButtonPosY * yPosOffset),				m_tHScores,			BtnFunction::HIGH_SCORES	,m_pApplication);
+	m_bQuit			= new Button(Vec2(smallButtonPosX += smallImageWidth + buttonSpacing,	smallButtonPosY * yPosOffset),				m_tQuit,			BtnFunction::QUIT			,m_pApplication);
 
 	//Adding buttons to a list for updating and drawing
 	m_buttons.push_back(m_bSinglePlayer);

@@ -28,7 +28,7 @@ void PlayState::Load()
 
 	//Vec2 mousePos;
 	
-	m_testButton = new Button(Vec2(100, 100), m_Buttontxture, m_pApplication);
+	m_testButton = new Button(Vec2(100, 100), m_Buttontxture, BtnFunction::OTHER, m_pApplication);
 }
 
 PlayState::~PlayState()
