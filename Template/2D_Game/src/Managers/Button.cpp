@@ -14,8 +14,8 @@ Button::Button()
 
 Button::Button(Vec2 a_pos, Texture *a_texture, Application *a_app)
 {
-	m_pressed = false;
-	m_size = a_texture->GetSize();
+	m_pressed	= false;
+	m_size		= a_texture->GetSize();
 	m_pos		= a_pos;
 	m_texture	= a_texture;
 	m_app		= a_app;

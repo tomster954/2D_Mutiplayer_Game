@@ -8,6 +8,8 @@
 #include "States\GameStates\PlayState.h"
 #include "States\GameStates\Instructions_State.h"
 
+#include "windows.h"
+
 #define GLFW_INCLUDE_GLU
 #include <glfw3.h>
 #include <iostream>
@@ -17,11 +19,20 @@ void error_callback(int error, const char* description)
 	fputs(description, stderr);
 }
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+	//Is called when the window resizes
+}
+
 Application::Application() :
 m_currentTime(0.0f),
 m_deltaTime(0.0f),
 m_lastTime(0.0f)
 {
+
+	m_winWidth = 640.0f;
+	m_winHeight = 480.0f;
+
 	//Sets up GLFW and creates window
 	SetUpGLFW();
 
@@ -70,7 +81,13 @@ void Application::SetUpGLFW()
 	}
 
 	//Create a new window
-	m_pWindow = glfwCreateWindow(1280, 800, "Game", NULL, NULL);
+	glfwWindowHint(GLFW_RESIZABLE, 0);
+	const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+	glfwWindowHint(GLFW_RED_BITS, mode->redBits);
+	glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
+	glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
+	glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
+	m_pWindow = glfwCreateWindow(mode->width, mode->height, "Game", glfwGetPrimaryMonitor(), NULL);
 
 	//If window initialisation failed
 	if (!m_pWindow)
@@ -100,24 +117,19 @@ void Application::Run()
 	//Main run loop
 	while (!glfwWindowShouldClose(m_pWindow))
 	{
-		glClearColor(255, 255, 255, 255);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
 		float ratio;
 		int width, height;
+
 		glfwGetFramebufferSize(m_pWindow, &width, &height);
 		ratio = width / (float)height;
-		glViewport(0, 0, width, height);
-		glClear(GL_COLOR_BUFFER_BIT);
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(-ratio, ratio, -1.f, 1.f, 1.f, -1.f);
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
+
+		//sets background to white
+		glClearColor(255, 255, 255, 255);
+		//Nothing draws wihtout this
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		Update();
 		Draw();
-
 		
 		glfwSwapBuffers(m_pWindow);
 		glfwPollEvents();
@@ -126,6 +138,8 @@ void Application::Run()
 
 void Application::Update()
 {
+	glfwSetFramebufferSizeCallback(m_pWindow, framebuffer_size_callback);
+
 	//Calculating deltatime
 	m_currentTime = (float)glfwGetTime();
 	m_deltaTime = m_currentTime - m_lastTime;

@@ -28,7 +28,7 @@ void Instructions_State::Draw(SpriteBatch_Imidiate *a_SBI)
 	ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiSetCond_Once);
 
 	//BEGIN
-	if (ImGui::Begin("Instructions State", NULL))
+	if (ImGui::Begin("Instructions State", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove))
 	{
 		//TODO:: Add play button
 		if (ImGui::Button("Back", ImVec2(100, 100)))

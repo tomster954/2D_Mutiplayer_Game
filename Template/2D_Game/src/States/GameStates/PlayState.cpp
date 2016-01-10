@@ -19,7 +19,6 @@ PlayState::PlayState(Application *a_application) : IGameState(a_application)
 
 void PlayState::Load()
 {
-	
 	m_Buttontxture = new Texture("./Images/smiley.png");
 	m_Buttontxture->SetSize(Vec2(100, 100));
 

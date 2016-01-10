@@ -34,5 +34,8 @@ private:
 	float m_currentTime = 0.0f;
 	float m_deltaTime = 0.0f;
 	float m_lastTime = 0.0f;
+
+	float m_winWidth;
+	float m_winHeight;
 };
 #endif
