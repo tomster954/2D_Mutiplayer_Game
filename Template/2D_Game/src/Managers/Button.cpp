@@ -79,6 +79,7 @@ void Button::ButtonFunction()
 	}break;
 	case BtnFunction::SINGLE_PLAYER:
 	{
+		m_app->m_pGameStateManager->PopState();
 		m_app->m_pGameStateManager->PushState("PlayState");
 	}break;
 	case BtnFunction::HIGH_SCORES:
@@ -103,7 +104,8 @@ void Button::ButtonFunction()
 	}break;
 	case BtnFunction::PAUSE:
 	{
-		//m_app->m_pGameStateManager->PushState("Pause");
+		//m_app->m_pGameStateManager->PopState();
+		//m_app->m_pGameStateManager->PushState("PauseState");
 	}break;
 	case BtnFunction::SETTINGS:
 	{

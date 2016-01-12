@@ -26,6 +26,9 @@ public:
 	bool m_blockUpdate;
 	bool m_blockDraw;
 
+	int m_windowWidth;
+	int m_windowHeight;
+
 protected:
 	Application *m_pApplication;
 };

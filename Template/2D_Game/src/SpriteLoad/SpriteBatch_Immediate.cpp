@@ -91,8 +91,8 @@ void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, const Mat3 a_transform
 	//will repeat the texture if required
 	if (a_texture->m_repeat)
 	{
-		repeatX = a_size.x / a_texture->GetSize().x;
-		repeatY = a_size.y / a_texture->GetSize().y;
+		repeatX = a_size.x / a_texture->GetOriginalSize().x;
+		repeatY = a_size.y / a_texture->GetOriginalSize().y;
 	}
 
 	//Corners of the quad based of the image size
@@ -140,6 +140,17 @@ void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, const Mat3 a_transform
 
 void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, Vec2 a_pos, Vec2 a_size)
 {
+	//repeats the texture however much
+	float repeatX = 1.0f;
+	float repeatY = 0.0f;
+
+	//will repeat the texture if required
+	if (a_texture->m_repeat)
+	{
+		repeatX = a_size.x / a_texture->GetOriginalSize().x;
+		repeatY = a_size.y / a_texture->GetOriginalSize().y;
+	}
+
 	float xPos = a_pos.x;
 	float yPos = a_pos.y;
 
@@ -160,10 +171,10 @@ void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, Vec2 a_pos, Vec2 a_siz
 
 		glBegin(GL_QUADS);
 
-		glTexCoord2f(0.0f, 0.0f);	glVertex2f(xPos, yPos);
-		glTexCoord2f(1.0f, 0.0f);	glVertex2f(xPos + width, yPos);
-		glTexCoord2f(1.0f, 1.0f);	glVertex2f(xPos + width, yPos + height);
-		glTexCoord2f(0.0f, 1.0f);	glVertex2f(xPos, yPos + height);
+		glTexCoord2f(0.0f,		repeatY);	glVertex2f(xPos, yPos);
+		glTexCoord2f(repeatX,	repeatY);	glVertex2f(xPos + width, yPos);
+		glTexCoord2f(repeatX,	1.0f);		glVertex2f(xPos + width, yPos + height);
+		glTexCoord2f(0.0f,		1.0f);		glVertex2f(xPos, yPos + height);
 
 		glEnd();
 	}

@@ -10,7 +10,6 @@
 
 MenuState::MenuState(Application *a_application) : IGameState(a_application)
 {
-	glfwGetWindowSize(m_pApplication->m_pWindow, &m_windowWidth, &m_windowHeight);
 	LoadTextures(); 
 	LoadButtons();
 }

@@ -44,9 +44,6 @@ private:
 	Button* m_bQuit;
 
 	std::vector<Button*> m_buttons;
-
-	int m_windowWidth;
-	int m_windowHeight;
 };
 
 

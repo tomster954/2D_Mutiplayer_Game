@@ -26,10 +26,10 @@ private:
 	void DrawMap();
 
 private:
-	Texture *m_testBoxText;
+	Texture *m_backgroundTexture;
 	Texture *m_Buttontxture;
 
-	Button *m_testButton;
+	Button *m_pauseButton;
 
 	SpriteBatch_Imidiate *m_SBI;
 };

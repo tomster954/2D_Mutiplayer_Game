@@ -152,14 +152,13 @@ void Application::Draw()
 {
 	//Begin
 	m_SBI->Begin();
-	ImGui_ImplGlfw_NewFrame();
-	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
+	//ImGui_ImplGlfw_NewFrame();
+	//ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
 	
 	//draw the menu state
 	m_pGameStateManager->DrawGameStates(m_SBI);
 	
 	//End
-	m_SBI->End();
-	ImGui::PopStyleVar();
-	ImGui::Render();		
+	//ImGui::PopStyleVar();
+	//ImGui::Render();		
 }

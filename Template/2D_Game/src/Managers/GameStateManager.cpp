@@ -9,6 +9,7 @@
 IGameState::IGameState(Application *a_app)
 {
 	m_pApplication = a_app;
+	glfwGetWindowSize(m_pApplication->m_pWindow, &m_windowWidth, &m_windowHeight);
 }
 
 IGameState::~IGameState()
@@ -18,7 +19,7 @@ IGameState::~IGameState()
 
 void IGameState::Update(float dt)
 {
-	//left blank
+	
 }
 
 void IGameState::Draw(SpriteBatch_Imidiate *a_SBI)
