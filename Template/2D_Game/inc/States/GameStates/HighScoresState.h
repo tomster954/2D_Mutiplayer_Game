@@ -3,8 +3,8 @@
 //Description: This is where players go to join a game
 //-----------------------------------------------------------------------------
 
-#ifndef INSTRUCTIONS_STATE
-#define INSTRUCTIONS_STATE
+#ifndef HIGH_SCORES_STATE
+#define HIGH_SCORES_STATE
 #include "Managers\GameStateManager.h"
 #include "Managers\Button.h"
 
@@ -12,15 +12,17 @@ class GLFWwindow;
 class Texture;
 class SpriteBatch_Imidiate;
 
-class InstructionsState : public IGameState
+class HighScoresState : public IGameState
 {
 public:
-	InstructionsState(Application *a_application);
-	virtual ~InstructionsState();
+	HighScoresState(Application *a_application);
+	virtual ~HighScoresState();
 	void Load();
 
 	virtual void Update(float a_dt);
 	virtual void Draw(SpriteBatch_Imidiate *a_SBI);
+
+	void DrawBackground();
 
 private:
 	Texture *m_backgroundTexture;

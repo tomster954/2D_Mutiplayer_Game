@@ -84,11 +84,11 @@ void Button::ButtonFunction()
 	}break;
 	case BtnFunction::HIGH_SCORES:
 	{
-		//m_app->m_pGameStateManager->PushState("HighScores");
+		m_app->m_pGameStateManager->PushState("HighScoresState");
 	}break;
 	case BtnFunction::HOST_GAME:
 	{
-		//m_app->m_pGameStateManager->PushState("HostGame");
+		m_app->m_pGameStateManager->PushState("HostGameState");
 	}break;
 	case BtnFunction::INSTUCTIONS:
 	{
@@ -96,20 +96,20 @@ void Button::ButtonFunction()
 	}break;
 	case BtnFunction::JOIN_GAME:
 	{
-		//m_app->m_pGameStateManager->PushState("JoinGameState");
+		m_app->m_pGameStateManager->PushState("JoinGameState");
 	}break;
 	case BtnFunction::MAIN_MENU:
 	{
+		m_app->m_pGameStateManager->PopState();
 		m_app->m_pGameStateManager->PushState("MenuState");
 	}break;
 	case BtnFunction::PAUSE:
 	{
-		//m_app->m_pGameStateManager->PopState();
-		//m_app->m_pGameStateManager->PushState("PauseState");
+		m_app->m_pGameStateManager->PushState("PauseState");
 	}break;
 	case BtnFunction::SETTINGS:
 	{
-		//m_app->m_pGameStateManager->PushState("Pause");
+		m_app->m_pGameStateManager->PushState("SettingsState");
 	}break;
 	case BtnFunction::QUIT:
 	{

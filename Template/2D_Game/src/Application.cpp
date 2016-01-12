@@ -7,6 +7,11 @@
 #include "States\GameStates\MenuState.h"
 #include "States\GameStates\PlayState.h"
 #include "States\GameStates\Instructions_State.h"
+#include "States\GameStates\JoinGameState.h"
+#include "States\GameStates\HostGameState.h"
+#include "States\GameStates\SettingsState.h"
+#include "States\GameStates\HighScoresState.h"
+#include "States\GameStates\PauseState.h"
 
 #include "windows.h"
 
@@ -48,7 +53,12 @@ m_lastTime(0.0f)
 	//Initialise the game states
 	m_pGameStateManager->SetState("MenuState",			new MenuState(this));
 	m_pGameStateManager->SetState("PlayState",			new PlayState(this));
-	m_pGameStateManager->SetState("InstructionsState",	new Instructions_State(this));
+	m_pGameStateManager->SetState("InstructionsState",	new InstructionsState(this));
+	m_pGameStateManager->SetState("JoinGameState",		new JoinGameState(this));
+	m_pGameStateManager->SetState("HostGameState",		new HostGameState(this));
+	m_pGameStateManager->SetState("SettingsState",		new SettingsState(this));
+	m_pGameStateManager->SetState("HighScoresState",	new HighScoresState(this));
+	m_pGameStateManager->SetState("PauseState",			new PauseState(this));
 	
 
 	m_pGameStateManager->PushState("MenuState");

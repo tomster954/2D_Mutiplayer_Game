@@ -3,8 +3,8 @@
 //Description: This is where players go to join a game
 //-----------------------------------------------------------------------------
 
-#ifndef INSTRUCTIONS_STATE
-#define INSTRUCTIONS_STATE
+#ifndef JOIN_GAME_STATE
+#define JOIN_GAME_STATE
 #include "Managers\GameStateManager.h"
 #include "Managers\Button.h"
 
@@ -12,11 +12,11 @@ class GLFWwindow;
 class Texture;
 class SpriteBatch_Imidiate;
 
-class InstructionsState : public IGameState
+class JoinGameState : public IGameState
 {
 public:
-	InstructionsState(Application *a_application);
-	virtual ~InstructionsState();
+	JoinGameState(Application *a_application);
+	virtual ~JoinGameState();
 	void Load();
 
 	virtual void Update(float a_dt);

@@ -1,4 +1,4 @@
-#include "GameStates\Instructions_State.h"
+#include "GameStates\JoinGameState.h"
 #include "Application.h"
 
 #include "Managers\GameStateManager.h"
@@ -12,14 +12,14 @@
 #include <glfw3.h>
 #include <vector>
 
-InstructionsState::InstructionsState(Application *a_application) : IGameState(a_application)
+JoinGameState::JoinGameState(Application *a_application) : IGameState(a_application)
 {
 	m_blockUpdate = true;
 	m_blockDraw = true;
 	Load();
 }
 
-void InstructionsState::Load()
+void JoinGameState::Load()
 {
 	m_backButtonTexture = new Texture("./Images/Buttons/Back.png");
 	m_backButtonTexture->SetSize(Vec2(25, 25));
@@ -33,23 +33,23 @@ void InstructionsState::Load()
 	m_allButtons.push_back(m_backButton);
 }
 
-InstructionsState::~InstructionsState()
+JoinGameState::~JoinGameState()
 {
 	delete m_backButton;
 	delete m_backgroundTexture;
 	delete m_backButtonTexture;
 }
 
-void InstructionsState::Update(float a_dt)
+void JoinGameState::Update(float a_dt)
 {
 	for (int i = 0; i < m_allButtons.size(); i++)
 		m_allButtons[i]->Update();
 }
 
-void InstructionsState::Draw(SpriteBatch_Imidiate *a_SBI)
+void JoinGameState::Draw(SpriteBatch_Imidiate *a_SBI)
 {
 	m_SBI = a_SBI;
 
 	for (int i = 0; i < m_allButtons.size(); i++)
-		m_allButtons[i]->Draw(m_SBI);
+		m_allButtons[i]->Draw(m_SBI);	
 }
