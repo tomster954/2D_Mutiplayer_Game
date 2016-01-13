@@ -18,15 +18,19 @@ public:
 	MenuState(Application *a_application);
 	virtual ~MenuState();
 
-	void LoadTextures();
-	void LoadButtons();
-
 	virtual void Update(float a_dt);
 	virtual void Draw(SpriteBatch_Imidiate *a_SBI);
 
+private:
+	void Load();
+	void LoadTextures();
+	void LoadButtons();
+	void DrawBackground();
 	void TestDrawing();
 	
 private:
+	Texture* m_backgroundTexture;
+
 	Texture* m_tSinglePlayer;
 	Texture* m_tJoinGame;
 	Texture* m_tHostGame;
@@ -43,9 +47,8 @@ private:
 	Button* m_bHScores;
 	Button* m_bQuit;
 
+	SpriteBatch_Imidiate *m_SBI;
+
 	std::vector<Button*> m_buttons;
 };
-
-
-
 #endif

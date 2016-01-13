@@ -51,5 +51,23 @@ void JoinGameState::Draw(SpriteBatch_Imidiate *a_SBI)
 	m_SBI = a_SBI;
 
 	for (int i = 0; i < m_allButtons.size(); i++)
-		m_allButtons[i]->Draw(m_SBI);	
+		m_allButtons[i]->Draw(m_SBI);
+	
+	DrawBackground();
+}
+
+void JoinGameState::DrawBackground()
+{
+	Vec2 mapSize = Vec2(m_windowWidth, m_windowHeight);
+	Mat3 mapTransform = Mat3(1, 0, 0,
+		0, 1, 0,
+		0, 0, 1);
+
+	float posX = mapSize.x / 2;
+	float posY = mapSize.y / 2;
+
+	mapTransform.TranslateMat3(posX, posY);
+
+	m_SBI->SetColor(255, 255, 255, 255);
+	m_SBI->DrawSprite(m_backgroundTexture, mapTransform, mapSize);
 }

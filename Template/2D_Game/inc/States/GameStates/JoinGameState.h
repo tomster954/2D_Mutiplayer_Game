@@ -17,10 +17,13 @@ class JoinGameState : public IGameState
 public:
 	JoinGameState(Application *a_application);
 	virtual ~JoinGameState();
-	void Load();
 
 	virtual void Update(float a_dt);
 	virtual void Draw(SpriteBatch_Imidiate *a_SBI);
+
+private:
+	void DrawBackground();
+	void Load();
 
 private:
 	Texture *m_backgroundTexture;

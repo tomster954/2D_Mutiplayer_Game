@@ -91,8 +91,8 @@ void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, const Mat3 a_transform
 	//will repeat the texture if required
 	if (a_texture->m_repeat)
 	{
-		repeatX = a_size.x / a_texture->GetOriginalSize().x;
-		repeatY = a_size.y / a_texture->GetOriginalSize().y;
+		repeatX = a_size.x / a_texture->GetSize().x;
+		repeatY = a_size.y / a_texture->GetSize().y;
 	}
 
 	//Corners of the quad based of the image size
@@ -147,8 +147,8 @@ void SpriteBatch_Imidiate::DrawSprite(Texture *a_texture, Vec2 a_pos, Vec2 a_siz
 	//will repeat the texture if required
 	if (a_texture->m_repeat)
 	{
-		repeatX = a_size.x / a_texture->GetOriginalSize().x;
-		repeatY = a_size.y / a_texture->GetOriginalSize().y;
+		repeatX = a_size.x / a_texture->GetSize().x;
+		repeatY = a_size.y / a_texture->GetSize().y;
 	}
 
 	float xPos = a_pos.x;

@@ -17,10 +17,13 @@ class HostGameState : public IGameState
 public:
 	HostGameState(Application *a_application);
 	virtual ~HostGameState();
-	void Load();
 
 	virtual void Update(float a_dt);
 	virtual void Draw(SpriteBatch_Imidiate *a_SBI);
+
+private:
+	void Load();
+	void DrawBackground();
 
 private:
 	Texture *m_backgroundTexture;

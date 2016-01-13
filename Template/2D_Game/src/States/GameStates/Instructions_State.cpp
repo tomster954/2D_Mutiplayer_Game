@@ -26,7 +26,7 @@ void InstructionsState::Load()
 
 	m_backgroundTexture = new Texture("./Images/Backgrounds/Scribble.png");
 	m_backgroundTexture->m_repeat = true;
-	m_backgroundTexture->SetSize(Vec2((float)m_windowWidth, (float)m_windowHeight));
+	m_backgroundTexture->SetSize(Vec2(600, 400));
 
 	m_backButton = new Button(Vec2(20, 20), m_backButtonTexture, BtnFunction::BACK, m_pApplication);
 
@@ -52,4 +52,22 @@ void InstructionsState::Draw(SpriteBatch_Imidiate *a_SBI)
 
 	for (int i = 0; i < m_allButtons.size(); i++)
 		m_allButtons[i]->Draw(m_SBI);
+	
+	DrawBackground();
+}
+
+void InstructionsState::DrawBackground()
+{
+	Vec2 mapSize = Vec2(m_windowWidth, m_windowHeight);
+	Mat3 mapTransform = Mat3(1, 0, 0,
+		0, 1, 0,
+		0, 0, 1);
+
+	float posX = mapSize.x / 2;
+	float posY = mapSize.y / 2;
+
+	mapTransform.TranslateMat3(posX, posY);
+
+	m_SBI->SetColor(255, 255, 255, 255);
+	m_SBI->DrawSprite(m_backgroundTexture, mapTransform, mapSize);
 }

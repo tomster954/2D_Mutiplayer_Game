@@ -16,11 +16,11 @@ Button::Button()
 Button::Button(Vec2 a_pos, Texture *a_texture, BtnFunction func, Application *a_app)
 {
 	m_function	= func;
-	m_pressed	= false;
 	m_size		= a_texture->GetSize();
 	m_pos		= a_pos;
 	m_texture	= a_texture;
 	m_app		= a_app;
+	m_pressed = true;
 }
 
 Button::~Button()
@@ -29,7 +29,6 @@ Button::~Button()
 
 void Button::Update()
 {
-	m_pressed = false;
 	m_size = m_texture->GetSize();
 	
 	double x, y;
@@ -39,17 +38,16 @@ void Button::Update()
 		y < m_pos.y + m_size.y && y > m_pos.y)
 	{
 		m_colour = Vec3(100, 0, 100);
-		if (glfwGetMouseButton(m_app->m_pWindow, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS)
+		if (glfwGetMouseButton(m_app->m_pWindow, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS && !m_pressed)
+		{
 			m_pressed = true;
+			ButtonFunction();
+		}
 	}
 	else
-	{
-		m_pressed = false;
 		m_colour = Vec3(255, 255, 255);
-	}
 
-	if (m_pressed)
-		ButtonFunction();
+	m_pressed = glfwGetMouseButton(m_app->m_pWindow, GLFW_MOUSE_BUTTON_1);
 }
 
 void Button::Draw(SpriteBatch_Imidiate *a_SBI)

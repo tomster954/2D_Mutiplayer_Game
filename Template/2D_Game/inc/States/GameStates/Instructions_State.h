@@ -17,10 +17,13 @@ class InstructionsState : public IGameState
 public:
 	InstructionsState(Application *a_application);
 	virtual ~InstructionsState();
-	void Load();
 
 	virtual void Update(float a_dt);
 	virtual void Draw(SpriteBatch_Imidiate *a_SBI);
+
+private:
+	void DrawBackground();
+	void Load();
 
 private:
 	Texture *m_backgroundTexture;

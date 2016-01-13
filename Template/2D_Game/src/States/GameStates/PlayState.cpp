@@ -24,7 +24,7 @@ void PlayState::Load()
 
 	m_backgroundTexture = new Texture("./Images/Backgrounds/Scribble.png");
 	m_backgroundTexture->m_repeat = true;
-	m_backgroundTexture->SetSize(Vec2((float)m_windowWidth, (float)m_windowHeight));
+	m_backgroundTexture->SetSize(Vec2(600, 400));
 
 	m_pauseButton = new Button(Vec2(20, 20), m_Buttontxture, BtnFunction::PAUSE, m_pApplication);
 }

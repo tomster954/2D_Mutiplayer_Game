@@ -26,7 +26,7 @@ void HighScoresState::Load()
 	m_backButtonTexture->SetSize(Vec2(25, 25));
 
 	m_backgroundTexture = new Texture("./Images/Backgrounds/Scribble.png");
-	m_backgroundTexture->SetSize(Vec2((float)m_windowWidth, (float)m_windowHeight));
+	m_backgroundTexture->SetSize(Vec2(600, 400));
 
 	m_backButton = new Button(Vec2(20, 20), m_backButtonTexture, BtnFunction::BACK, m_pApplication);
 
@@ -50,10 +50,10 @@ void HighScoresState::Draw(SpriteBatch_Imidiate *a_SBI)
 {
 	m_SBI = a_SBI;
 
-	DrawBackground();
-
 	for (int i = 0; i < m_allButtons.size(); i++)
 		m_allButtons[i]->Draw(m_SBI);
+	
+	DrawBackground();
 }
 
 void HighScoresState::DrawBackground()
@@ -67,7 +67,6 @@ void HighScoresState::DrawBackground()
 	float posY = mapSize.y / 2;
 	
 	mapTransform.TranslateMat3(posX, posY);
-	Vec2 pos2 = Vec2(posX, posY);
 
 	m_SBI->SetColor(255, 255, 255, 255);
 	m_SBI->DrawSprite(m_backgroundTexture, mapTransform, mapSize);

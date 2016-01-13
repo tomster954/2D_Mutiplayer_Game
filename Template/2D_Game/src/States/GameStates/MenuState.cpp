@@ -23,17 +23,20 @@ MenuState::~MenuState()
 	delete m_tHostGame;
 	delete m_tJoinGame;
 	delete m_tSinglePlayer;
+	delete m_backgroundTexture;
 }
 
 void MenuState::LoadTextures()
 {
-	m_tSinglePlayer	= new Texture("./Images/images.png");
-	m_tJoinGame		= new Texture("./Images/images.png");
-	m_tHostGame		= new Texture("./Images/images.png");
-	m_tInstructions = new Texture("./Images/images.png");
-	m_tSettings		= new Texture("./Images/images.png");
-	m_tHScores		= new Texture("./Images/images.png");
-	m_tQuit			= new Texture("./Images/images.png");
+	m_backgroundTexture = new Texture("./Images/Backgrounds/Scribble.png");
+
+	m_tSinglePlayer		= new Texture("./Images/Buttons/SinglePlayer.png");
+	m_tJoinGame			= new Texture("./Images/Buttons/JoinGame.png");
+	m_tHostGame			= new Texture("./Images/Buttons/HostGame.png");
+	m_tInstructions		= new Texture("./Images/Buttons/Instructions.png");
+	m_tSettings			= new Texture("./Images/Buttons/Settings.png");
+	m_tHScores			= new Texture("./Images/Buttons/HighScores.png");
+	m_tQuit				= new Texture("./Images/Buttons/Back.png");
 }
 
 void MenuState::LoadButtons()
@@ -93,28 +96,7 @@ void MenuState::Draw(SpriteBatch_Imidiate* a_SBI)
 {
 	glfwGetWindowSize(m_pApplication->m_pWindow, &m_windowWidth, &m_windowHeight);
 
-	//Setting up next window
-	//ImGui::SetNextWindowSize(ImVec2((float)m_windowWidth, (float)m_windowHeight), ImGuiSetCond_Always);
-	//ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiSetCond_Once);
-	//
-	//BEGIN
-	//if (ImGui::Begin("Main Menu", NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove))
-	//{
-	//	
-	//	if(ImGui::Button("Play", ImVec2(100, 100)))
-	//	{
-	//		//Set the current Updating state to Play State;
-	//		m_pApplication->m_pGameStateManager->PopState();
-	//		m_pApplication->m_pGameStateManager->PushState("PlayState");
-	//	}
-	//	if (ImGui::Button("Instructions", ImVec2(100, 100)))
-	//	{
-	//		//Push the Instructions state
-	//		m_pApplication->m_pGameStateManager->PushState("InstructionsState");
-	//	}
-	//}
-	//ImGui::End();
-	//END
+	m_SBI = a_SBI;
 
 	for (int i = 0; i < m_buttons.size(); i++)
 		m_buttons[i]->Draw(a_SBI);
@@ -208,4 +190,20 @@ void MenuState::TestDrawing()
 
 	glEnd();
 #pragma endregion
+}
+
+void MenuState::DrawBackground()
+{
+	Vec2 mapSize = Vec2(m_windowWidth, m_windowHeight);
+	Mat3 mapTransform = Mat3(1, 0, 0,
+		0, 1, 0,
+		0, 0, 1);
+
+	float posX = mapSize.x / 2;
+	float posY = mapSize.y / 2;
+
+	mapTransform.TranslateMat3(posX, posY);
+
+	m_SBI->SetColor(255, 255, 255, 255);
+	m_SBI->DrawSprite(m_backgroundTexture, mapTransform, mapSize);
 }
