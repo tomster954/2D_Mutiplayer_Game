@@ -98,7 +98,7 @@ void Button::ButtonFunction()
 	}break;
 	case BtnFunction::MAIN_MENU:
 	{
-		m_app->m_pGameStateManager->PopState();
+		m_app->m_pGameStateManager->PopAllStates();
 		m_app->m_pGameStateManager->PushState("MenuState");
 	}break;
 	case BtnFunction::PAUSE:

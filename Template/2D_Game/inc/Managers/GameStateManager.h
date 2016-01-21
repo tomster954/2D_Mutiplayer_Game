@@ -45,6 +45,7 @@ public:
 	void SetState(const char *name, IGameState *pState);
 	void PushState(const char *name);
 	void PopState();
+	void PopAllStates();
 
 protected:
 	void ProcessCommands();
@@ -60,6 +61,7 @@ protected:
 	{
 		E_PUSH,
 		E_POP,
+		E_POPALL,
 	};
 
 	// a commands structure

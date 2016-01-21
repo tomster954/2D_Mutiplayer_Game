@@ -110,6 +110,11 @@ void GameStateManager::ProcessCommands()
 			if (m_gameStateStack.size() > 0)
 				m_gameStateStack.pop_back();
 		}
+		else if (m_commands[i].cmd == E_POPALL)
+		{
+			for (int i = m_gameStateStack.size(); i > 0; i--)
+				m_gameStateStack.pop_back();
+		}
 	}
 
 	m_commands.clear();
@@ -142,6 +147,13 @@ void GameStateManager::PopState()
 {
 	SCommands command;
 	command.cmd = E_POP;
+
+	m_commands.push_back(command);
+}
+void GameStateManager::PopAllStates()
+{
+	SCommands command;
+	command.cmd = E_POPALL;
 
 	m_commands.push_back(command);
 }

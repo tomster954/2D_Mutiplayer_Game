@@ -21,16 +21,59 @@ PauseState::PauseState(Application *a_application) : IGameState(a_application)
 
 void PauseState::Load()
 {
-	m_backButtonTexture = new Texture("./Images/Buttons/Back.png");
-	m_backButtonTexture->SetSize(Vec2(25, 25));
+	LoadTextures();
+	LoadButtons();
+}
 
+void PauseState::LoadTextures()
+{
+	//Background
 	m_backgroundTexture = new Texture("./Images/Backgrounds/Scribble.png");
 	m_backgroundTexture->m_repeat = true;
 	m_backgroundTexture->SetSize(Vec2((float)m_windowWidth, (float)m_windowHeight));
 
+	//Back Button
+	m_backButtonTexture = new Texture("./Images/Buttons/Back.png");
+	m_backButtonTexture->SetSize(Vec2(25, 25));
+
+	//Main Buttons
+	m_tHScores		= new Texture("./Images/Buttons/SinglePlayer.png");
+	m_tInstructions = new Texture("./Images/Buttons/JoinGame.png");
+	m_tSettings		= new Texture("./Images/Buttons/HostGame.png");
+	m_tQuit			= new Texture("./Images/Buttons/Instructions.png");
+}
+
+void PauseState::LoadButtons()
+{
+	float yPosOffset = 0.40f;
+
+	//setting the size of the buttons based of the window size
+	float largeImageWidth = (float)m_windowWidth * 0.30f;
+	float largeImageHeight = (float)m_windowHeight * 0.05f;
+	float largeButtonPosX = (float)m_windowWidth * 0.50f - largeImageWidth * 0.50f;
+	float largeButtonPosY = m_windowHeight;
+
+	//setting the main button texture size relative to the size of the window
+	m_tHScores->SetSize(Vec2(largeImageWidth, largeImageHeight));
+	m_tSettings->SetSize(Vec2(largeImageWidth, largeImageHeight));
+	m_tInstructions->SetSize(Vec2(largeImageWidth, largeImageHeight));
+	m_tQuit->SetSize(Vec2(largeImageWidth, largeImageHeight));
+
+	//Initialising the back buttons
 	m_backButton = new Button(Vec2(20, 20), m_backButtonTexture, BtnFunction::BACK, m_pApplication);
 
+	//Initialising the main buttons
+	m_bHScores		= new Button(Vec2(largeButtonPosX, largeButtonPosY * yPosOffset),			 m_tHScores, BtnFunction::HIGH_SCORES, m_pApplication);
+	m_bSettings		= new Button(Vec2(largeButtonPosX, largeButtonPosY * (yPosOffset += 0.10f)), m_tSettings, BtnFunction::SETTINGS, m_pApplication);
+	m_bInstructions = new Button(Vec2(largeButtonPosX, largeButtonPosY * (yPosOffset += 0.10f)), m_tInstructions, BtnFunction::INSTUCTIONS, m_pApplication);
+	m_bQuit			= new Button(Vec2(largeButtonPosX, largeButtonPosY * (yPosOffset += 0.10f)), m_tQuit, BtnFunction::MAIN_MENU, m_pApplication);
+
 	m_allButtons.push_back(m_backButton);
+
+	m_allButtons.push_back(m_bHScores);
+	m_allButtons.push_back(m_bSettings);
+	m_allButtons.push_back(m_bInstructions);
+	m_allButtons.push_back(m_bQuit);
 }
 
 PauseState::~PauseState()
