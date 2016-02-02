@@ -23,9 +23,6 @@ public:
 	Vec2 GetSize(){ return Vec2(m_width, m_height); }
 	Vec2 GetOriginalSize(){ return Vec2(m_OriginalWidth, m_OriginalHeight); }
 
-
-	//unsigned int GetWidth()				{ return m_width; }
-	//unsigned int GetHeight()			{ return m_height; }
 	unsigned int GetTextureHandle()		{ return m_glTextureHandle; }
 
 	//if true, will repeat the texture over the quad its drawn on.

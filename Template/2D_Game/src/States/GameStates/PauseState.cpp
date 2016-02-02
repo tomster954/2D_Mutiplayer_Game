@@ -37,10 +37,10 @@ void PauseState::LoadTextures()
 	m_backButtonTexture->SetSize(Vec2(25, 25));
 
 	//Main Buttons
-	m_tHScores		= new Texture("./Images/Buttons/SinglePlayer.png");
-	m_tInstructions = new Texture("./Images/Buttons/JoinGame.png");
-	m_tSettings		= new Texture("./Images/Buttons/HostGame.png");
-	m_tQuit			= new Texture("./Images/Buttons/Instructions.png");
+	m_tHScores		= new Texture("./Images/Buttons/HighScores2.png");
+	m_tInstructions = new Texture("./Images/Buttons/Instructions2.png");
+	m_tSettings		= new Texture("./Images/Buttons/Settings2.png");
+	m_tQuit			= new Texture("./Images/Buttons/Quit.png");
 }
 
 void PauseState::LoadButtons()

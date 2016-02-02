@@ -28,7 +28,7 @@ MenuState::~MenuState()
 
 void MenuState::LoadTextures()
 {
-	m_backgroundTexture = new Texture("./Images/Backgrounds/Scribble.png");
+	m_backgroundTexture = new Texture("./Images/Backgrounds/Menu.png");
 
 	m_tSinglePlayer		= new Texture("./Images/Buttons/SinglePlayer.png");
 	m_tJoinGame			= new Texture("./Images/Buttons/JoinGame.png");
@@ -100,6 +100,8 @@ void MenuState::Draw(SpriteBatch_Imidiate* a_SBI)
 
 	for (int i = 0; i < m_buttons.size(); i++)
 		m_buttons[i]->Draw(a_SBI);
+
+	DrawBackground();
 }
 
 void MenuState::TestDrawing()
