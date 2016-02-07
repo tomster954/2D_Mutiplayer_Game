@@ -116,7 +116,9 @@ void Application::SetUpGLFW()
 	//Setting the background to white
 	glClearColor(255, 255, 255, 255);
 
-	//Enable depth test for test cube
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
 	glEnable(GL_DEPTH_TEST);
 }
 

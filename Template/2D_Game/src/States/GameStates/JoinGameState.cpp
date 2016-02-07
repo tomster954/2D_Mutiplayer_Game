@@ -22,7 +22,7 @@ JoinGameState::JoinGameState(Application *a_application) : IGameState(a_applicat
 void JoinGameState::Load()
 {
 	m_backButtonTexture = new Texture("./Images/Buttons/Back.png");
-	m_backButtonTexture->SetSize(Vec2(25, 25));
+	m_backButtonTexture->SetSize(Vec2(50, 50));
 
 	m_backgroundTexture = new Texture("./Images/Backgrounds/Scribble.png");
 	m_backgroundTexture->m_repeat = true;

@@ -36,7 +36,7 @@ void MenuState::LoadTextures()
 	m_tInstructions		= new Texture("./Images/Buttons/Instructions.png");
 	m_tSettings			= new Texture("./Images/Buttons/Settings.png");
 	m_tHScores			= new Texture("./Images/Buttons/HighScores.png");
-	m_tQuit				= new Texture("./Images/Buttons/Back.png");
+	m_tQuit				= new Texture("./Images/Buttons/Quit2.png");
 }
 
 void MenuState::LoadButtons()
