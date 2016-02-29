@@ -24,7 +24,7 @@ void HostGameState::Load()
 	m_backButtonTexture = new Texture("./Images/Buttons/Back.png");
 	m_backButtonTexture->SetSize(Vec2(50, 50));
 
-	m_backgroundTexture = new Texture("./Images/Backgrounds/Scribble.png");
+	m_backgroundTexture = new Texture("./Images/Backgrounds/HostSetup.png");
 	m_backgroundTexture->m_repeat = true;
 	m_backgroundTexture->SetSize(Vec2((float)m_windowWidth, (float)m_windowHeight));
 

@@ -61,7 +61,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>.\dep\RakNet\lib;.\dep\glfw-3.1.2\lib-vc2013;.\dep\MathLib\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ws2_32.lib;RakNet_d.lib;opengl32.lib;glu32.lib;glfw3.lib;MyMathLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;RakNet_d.lib;opengl32.lib;glu32.lib;glfw3.lib;MyMathLib_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,7 +82,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>.\dep\RakNet\lib;.\dep\glfw-3.1.2\lib-vc2013;.\dep\MathLib\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ws2_32.lib;RakNet.lib;opengl32.lib;glu32.lib;glfw3.lib;MathLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;RakNet.lib;opengl32.lib;glu32.lib;glfw3.lib;MyMathLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -97,9 +97,9 @@
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\SpriteLoad\SpriteBatch_Immediate.cpp" />
     <ClCompile Include="src\States\GameStates\HighScoresState.cpp" />
-    <ClCompile Include="src\States\GameStates\HostGameState.cpp" />
+    <ClCompile Include="src\States\GameStates\HostSetupState.cpp" />
     <ClCompile Include="src\States\GameStates\Instructions_State.cpp" />
-    <ClCompile Include="src\States\GameStates\JoinGameState.cpp" />
+    <ClCompile Include="src\States\GameStates\JoinSetupState.cpp" />
     <ClCompile Include="src\States\GameStates\MenuState.cpp" />
     <ClCompile Include="src\States\GameStates\PauseState.cpp" />
     <ClCompile Include="src\States\GameStates\PlayState.cpp" />

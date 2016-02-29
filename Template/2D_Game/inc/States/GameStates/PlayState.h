@@ -8,7 +8,7 @@
 #include "Managers\GameStateManager.h"
 #include "Managers\Button.h"
 
-class GLFWwindow;
+struct GLFWwindow;
 class Texture;
 class SpriteBatch_Imidiate;
 

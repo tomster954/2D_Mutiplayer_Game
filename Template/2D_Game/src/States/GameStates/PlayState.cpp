@@ -22,9 +22,7 @@ void PlayState::Load()
 	m_Buttontxture = new Texture("./Images/Buttons/Pause.png");
 	m_Buttontxture->SetSize(Vec2(50, 50));
 
-	m_backgroundTexture = new Texture("./Images/Backgrounds/Scribble.png");
-	m_backgroundTexture->m_repeat = true;
-	m_backgroundTexture->SetSize(Vec2(600, 400));
+	m_backgroundTexture = new Texture("./Images/Backgrounds/PlayState.png");
 
 	m_pauseButton = new Button(Vec2(20, 20), m_Buttontxture, BtnFunction::PAUSE, m_pApplication);
 }

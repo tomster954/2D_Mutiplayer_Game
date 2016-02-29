@@ -24,10 +24,7 @@ void InstructionsState::Load()
 	m_backButtonTexture = new Texture("./Images/Buttons/Back.png");
 	m_backButtonTexture->SetSize(Vec2(50, 50));
 
-	m_backgroundTexture = new Texture("./Images/Backgrounds/Scribble.png");
-	m_backgroundTexture->m_repeat = true;
-	m_backgroundTexture->SetSize(Vec2(600, 400));
-
+	m_backgroundTexture = new Texture("./Images/Backgrounds/InstructionsState.png");
 	m_backButton = new Button(Vec2(20, 20), m_backButtonTexture, BtnFunction::BACK, m_pApplication);
 
 	m_allButtons.push_back(m_backButton);

@@ -28,7 +28,7 @@ void PauseState::Load()
 void PauseState::LoadTextures()
 {
 	//Background
-	m_backgroundTexture = new Texture("./Images/Backgrounds/Scribble.png");
+	m_backgroundTexture = new Texture("./Images/Backgrounds/PauseState.png");
 	m_backgroundTexture->m_repeat = true;
 	m_backgroundTexture->SetSize(Vec2((float)m_windowWidth, (float)m_windowHeight));
 

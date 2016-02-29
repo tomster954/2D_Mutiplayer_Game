@@ -25,7 +25,7 @@ void HighScoresState::Load()
 	m_backButtonTexture = new Texture("./Images/Buttons/Back.png");
 	m_backButtonTexture->SetSize(Vec2(50, 50));
 
-	m_backgroundTexture = new Texture("./Images/Backgrounds/Scribble.png");
+	m_backgroundTexture = new Texture("./Images/Backgrounds/HScoresState.png");
 	m_backgroundTexture->SetSize(Vec2(600, 400));
 
 	m_backButton = new Button(Vec2(20, 20), m_backButtonTexture, BtnFunction::BACK, m_pApplication);
