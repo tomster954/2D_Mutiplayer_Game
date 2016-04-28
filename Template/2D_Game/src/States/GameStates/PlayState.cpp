@@ -37,7 +37,7 @@ PlayState::~PlayState()
 void PlayState::Update(float a_dt)
 {
 	
-
+	
 	m_pauseButton->Update();
 }
 

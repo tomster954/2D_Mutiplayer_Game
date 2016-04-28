@@ -1,4 +1,4 @@
-#include "GameStates\JoinGameState.h"
+#include "GameStates\JoinSetupState.h"
 #include "Application.h"
 
 #include "Managers\GameStateManager.h"
@@ -25,8 +25,6 @@ void JoinGameState::Load()
 	m_backButtonTexture->SetSize(Vec2(50, 50));
 
 	m_backgroundTexture = new Texture("./Images/Backgrounds/JoinSetup.png");
-	m_backgroundTexture->m_repeat = true;
-	m_backgroundTexture->SetSize(Vec2((float)m_windowWidth, (float)m_windowHeight));
 
 	m_backButton = new Button(Vec2(20, 20), m_backButtonTexture, BtnFunction::BACK, m_pApplication);
 

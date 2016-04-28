@@ -118,9 +118,9 @@
     <ClInclude Include="inc\SpriteLoad\lodepng.h" />
     <ClInclude Include="inc\SpriteLoad\SpriteBatch_Immediate.h" />
     <ClInclude Include="inc\States\GameStates\HighScoresState.h" />
-    <ClInclude Include="inc\States\GameStates\HostGameState.h" />
+    <ClInclude Include="inc\States\GameStates\HostSetupState.h" />
     <ClInclude Include="inc\States\GameStates\Instructions_State.h" />
-    <ClInclude Include="inc\States\GameStates\JoinGameState.h" />
+    <ClInclude Include="inc\States\GameStates\JoinSetupState.h" />
     <ClInclude Include="inc\States\GameStates\MenuState.h" />
     <ClInclude Include="inc\States\GameStates\PauseState.h" />
     <ClInclude Include="inc\States\GameStates\PlayState.h" />

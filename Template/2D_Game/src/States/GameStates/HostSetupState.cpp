@@ -1,4 +1,4 @@
-#include "GameStates\HostGameState.h"
+#include "GameStates\HostSetupState.h"
 #include "Application.h"
 
 #include "Managers\GameStateManager.h"
